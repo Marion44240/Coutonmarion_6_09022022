@@ -1,6 +1,9 @@
 // Importation bcrypt pour le hash du mot de passe
 const bcrypt = require('bcrypt');
 
+// Importation jsonwebtoken pour le token d'authentification
+const jwt = require('jsonwebtoken');
+
 // Importation du fichier models user
 const User = require('../models/user');
 
@@ -39,7 +42,11 @@ exports.login = (req, res, next) => {
                     // Création du token
                     res.status(200).json({
                         userId: user._id,
-                        token: 'TOKEN'
+                        token: jwt.sign(
+                            { userId: user._id },
+                            'RANDOM_TOKEN_SECRET',
+                            { expiresIn: '24' }
+                        )
                     });
             })
             .catch(error => res.status(500).json({ error }));
