@@ -5,6 +5,9 @@ const app = express();
 // Importation Mongoose
 const mongoose = require('mongoose');
 
+// Importation module node pour le chemin image
+const path = require('path');
+
 // Importation routes
 const userRoutes = require('./routes/user');
 
@@ -30,6 +33,9 @@ app.use((req, res, next) => {
 
 // Analyse le corps de la requête
 app.use(express.json());
+
+// Gére les ressources images de façon statique d'une requête vers le dossier Images
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Création et identification utilisateur
 app.use('/api/auth', userRoutes);
