@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // Importation routes
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 // Connection a la base de donné mongoDB
@@ -39,5 +40,8 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Création et identification utilisateur
 app.use('/api/auth', userRoutes);
+
+// Création, modification, suppression des sauces 
+app.use('/api/sauces', sauceRoutes);
 
 module.exports = app;
