@@ -8,12 +8,15 @@ const mongoose = require('mongoose');
 // Importation module node pour le chemin image
 const path = require('path');
 
+// Importation dotenv (variable d'environement)
+require('dotenv').config();
+
 // Importation routes
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 // Connection a la base de donné mongoDB
-mongoose.connect('mongodb+srv://marion44240:Jayan@cluster0.sweev.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.SECRET_USER}:${process.env.SECRET_PASSWORD}@${process.env.SECRET_CLUSTER}/myFirstDatabase?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
