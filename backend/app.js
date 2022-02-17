@@ -8,6 +8,10 @@ const mongoose = require('mongoose');
 // Importation module node pour le chemin image
 const path = require('path');
 
+// Importation module helmet pour sécurisé les en-têtes HTTP
+const helmet = require('helmet');
+app.use(helmet());
+
 // Importation dotenv (variable d'environement)
 require('dotenv').config();
 
