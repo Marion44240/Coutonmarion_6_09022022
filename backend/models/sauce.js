@@ -17,4 +17,4 @@ const sauceSchema = mongoose.Schema({
 });
 
 // Exportation du schéma en tant que modèle Mongoose
-module.exports = mongoose.model('sauce', sauceSchema);
+module.exports = mongoose.model('Sauce', sauceSchema);
