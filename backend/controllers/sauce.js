@@ -72,17 +72,21 @@ exports.likeSauce  = (req, res, next) => {
     const like = req.body.like;
     const userId = req.body.userId;
 
+    // Trouve la sauce ayant le même _id que le paramètre de la requête
     Sauce.findOne({ _id: req.params.id })
         .then ((sauce) => {
+            // ID de l'utilisateur qui vote
             let userLike = sauce.usersLiked.find((id) => id === userId);
             let userDislike = sauce.usersDisliked.find((id) => id === userId);
 
             switch (like) {
+                // Ajoute un like
                 case 1:
                     sauce.likes += 1;
                     sauce.usersLiked.push(userId);
                     break;
 
+                // Supprime un like/dislike
                 case 0: 
                     if (userLike) {
                         sauce.likes -= 1;
@@ -93,12 +97,14 @@ exports.likeSauce  = (req, res, next) => {
                     }
                     break;
 
+                // Ajoute un dislike
                 case -1: 
                     sauce.dislikes += 1;
                     sauce.usersDisliked.push(userId);
                     break;
             }
 
+            // Sauvegarde dans la base de données
             sauce.save()
                 .then(() => res.status(201).json({ message: 'sauvegarde de la sauce' }))
                 .catch ((error) => res.status(400).json({ error }));
