@@ -71,6 +71,7 @@ exports.getAllSauce = (req, res, next) => {
 exports.likeSauce  = (req, res, next) => {
     const like = req.body.like;
     const userId = req.body.userId;
+    console.log(req.body);
 
     // Trouve la sauce ayant le même _id que le paramètre de la requête
     Sauce.findOne({ _id: req.params.id })
