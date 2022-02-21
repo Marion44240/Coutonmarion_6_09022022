@@ -17,8 +17,8 @@ schema
 // Vérification qualité du mot de passe
 module.exports = (req, res, next) => {
     if (!schema.validate(req.body.password)) {
-        return res.status(400)
-        .json({ error: 'Le mot de passe doit contenir 8 caractére min et 25 max, des majuscules et minuscule, au moins 2 chiffres et le tous sans espaces' })
+        return (res.status(400)
+        .json({ message: 'Le mot de passe doit contenir 8 caractére min et 25 max, des majuscules et minuscule, au moins 2 chiffres et sans espaces' }))
     } else {
         next();
     }
