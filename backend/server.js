@@ -3,6 +3,7 @@ const http = require('http');
 // appel du fichier app.js
 const app = require('./app');
 
+// Amélioration du fichier pour le rendre plus stable et approprié pour le déploiement 
 // La fonction normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne
 const normalizePort = val => {
     const port = parseInt(val, 10);
