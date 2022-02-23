@@ -39,6 +39,12 @@ app.use((req, res, next) => {
     next();
 });
 
+// CORS, pour autoriser les images
+app.use((req, res, next) => {
+    res.removeHeader('Cross-Origin-Resource-Policy');
+    next();
+});
+
 // Analyse le corps de la requête
 app.use(express.json());
 
