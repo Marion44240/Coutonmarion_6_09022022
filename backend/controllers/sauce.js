@@ -26,7 +26,7 @@ exports.modifySauce = (req, res, next) => {
     const sauceObject = req.file ? {
         ...JSON.parse(req.body.sauce),
         // si oui on traite la nouvelle image sinon on traite l'objet entrant
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filname}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body };
     // Mise a jour des modifications
     Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
